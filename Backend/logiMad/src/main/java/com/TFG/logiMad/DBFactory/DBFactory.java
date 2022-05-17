@@ -5,7 +5,7 @@ import javax.sql.DataSource;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class DBFactory {
-    static final String JDBCHOST = "jdbc:mysql://localhost:3307/paquetitos?useSSL=false";
+    static final String JDBCHOST = "jdbc:mysql://localhost:3307/logimad?useSSL=false";
     static final String JDBCUSER = "root";
     static final String JDBCPASSWD = "root";
 
