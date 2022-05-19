@@ -38,15 +38,20 @@ module.exports = function (passport) {
                     hashedPassword = await bcrypt.hash(password, salt);
 
 
-                    var user = req.body.name
+                    var userName = req.body.name
+                    var surName = req.body.surname
+                    var phone = req.body.phone
                     var newUserMysql = new Object()
 
                     newUserMysql.email = email
                     newUserMysql.password = hashedPassword
 
-                    var insertQuery = "INSERT INTO users ( mail, password, name ) values ('" + email + "','" + hashedPassword + "','" + user + "')"
+                    var insertQuery = `INSERT INTO users ( name, surname, password, mail, phone ) values ('${userName}', '${surName}', '${hashedPassword}', '${email}', '${phone}')`
                     console.log(insertQuery)
-                    connection.query(insertQuery, function (err, rows) {
+                    connection.query(insertQuery, function (err, rows, results) {
+                        console.log('rows ->', rows)
+                        console.log('results ->', results)
+                        console.log('err ->', err)
                         newUserMysql.id = rows.insertId
 
                         return done(null, newUserMysql)
