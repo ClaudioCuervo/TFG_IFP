@@ -122,11 +122,30 @@ const ver = async (req, res) => {
 }
 
 
+const contact = async (req, res) => {
+    try {
+        const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
+        console.log(req.session)
+        res.render('index/contact', {
+            message: message
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports = {
+    index: contact
+}
+
+
 
 
 module.exports = {
     index: index,
     addMessage: addMessage,
     addMessage2: addMessage2,
-    ver: ver
+    ver: ver,
+    contact: contact
 }
