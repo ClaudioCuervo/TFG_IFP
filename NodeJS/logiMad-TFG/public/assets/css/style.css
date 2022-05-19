@@ -3031,7 +3031,7 @@ a.reply-btn {
 }
 
 .is-sticky .sticky-area {
-    background: #fff;
+    background: #00656D;
     width: 100%;
     z-index: 999999 !important;
     box-shadow: 0 5px 25px 0 rgba(27, 20, 100, 0.15);
