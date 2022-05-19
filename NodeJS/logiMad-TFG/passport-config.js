@@ -83,7 +83,9 @@ module.exports = function (passport) {
                 } else {
 
                     req.session.user = {
-                        name: rows[0].name
+                        name: rows[0].name,
+                        mail: rows[0].mail,
+                        phone: rows[0].phone
                     }
 
                     console.log(req.session)
