@@ -8,6 +8,7 @@ router.post ('/postFull', index.addMessage)
 router.post ('/post', index.addMessage2)
 
 router.get ('/contact', index.contact)
+router.get ('/faq', index.faq)
 
 
 module.exports.router = router
