@@ -5,15 +5,14 @@ const bcrypt = require('bcryptjs')
 
 module.exports = function (passport) {
 
-    passport.serializeUser(function (user, done) {
-        done(null, user.id)
-    })
 
-    passport.deserializeUser(function (id, done) {
-        connection.query("select * from users where id = " + id, function (err, rows) {
-            done(err, rows[0])
-        })
-    })
+    passport.serializeUser(function(user, done) {
+        done(null, user);
+      });
+      
+      passport.deserializeUser(function(user, done) {
+        done(null, user);
+      });
 
 
     var hashedPassword = ''
@@ -49,9 +48,6 @@ module.exports = function (passport) {
                     var insertQuery = `INSERT INTO users ( name, surname, password, mail, phone ) values ('${userName}', '${surName}', '${hashedPassword}', '${email}', '${phone}')`
                     console.log(insertQuery)
                     connection.query(insertQuery, function (err, rows, results) {
-                        console.log('rows ->', rows)
-                        console.log('results ->', results)
-                        console.log('err ->', err)
                         newUserMysql.id = rows.insertId
 
                         return done(null, newUserMysql)
@@ -66,15 +62,17 @@ module.exports = function (passport) {
             passReqToCallback: true
         },
         function (req, email, password, done) {
+            var query = "SELECT * FROM `users` WHERE `mail` = '" + email + "'"
+            console.log(query);
 
-            connection.query("SELECT * FROM `users` WHERE `mail` = '" + email + "'", async function (err, rows) {
+            connection.query(query, async function (err, rows) {
                 if (err)
                     return done(err)
                 if (!rows.length) {
                     return done(null, false, console.log('No user found.'))
                 }
                 const isPasswordMatching = await bcrypt.compare(password, rows[0].password);
-                console.log(isPasswordMatching)
+                
 
                 if (!(isPasswordMatching)) {
 
@@ -92,9 +90,5 @@ module.exports = function (passport) {
                     return done(null, rows[0])
                 }
             })
-
-
-
         }))
-
 }
