@@ -39,21 +39,21 @@
                         <div class="navigation text-white theme-2">
                             <div id="cssmenu">
                                 <ul>
+                                    <%if (user == undefined) {%>
                                     <li class="active"><a href="/" title="Inicio">Inicio</a></li>
-                                    <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
                                     <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
-                                    <%if (user !== undefined) {%>
+                                    <li><a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a></li>
+                                    <% } else { %>
+                                    <li class="active"><a href="/" title="Inicio">Inicio</a></li>
+                                    <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
+                                    <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
+                                    <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                    <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
                                     <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
+                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar sesión</a></li>
                                     <% } %>
-                                    <div class="navigation-btn">
-                                        <%if (user == undefined) {%>
-                                        <a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a>
-                                        <% } else { %>
-                                            <a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar sesión</a>
-                                        <% } %>
-                                    </div>
                                 </ul>
                             </div>
                         </div>
