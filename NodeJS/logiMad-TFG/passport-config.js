@@ -36,7 +36,6 @@ module.exports = function (passport) {
                     const salt = await bcrypt.genSalt(10);
                     hashedPassword = await bcrypt.hash(password, salt);
 
-
                     var userName = req.body.name
                     var surName = req.body.surname
                     var phone = req.body.phone
@@ -83,10 +82,9 @@ module.exports = function (passport) {
                     req.session.user = {
                         name: rows[0].name,
                         mail: rows[0].mail,
-                        phone: rows[0].phone
+                        phone: rows[0].phone,
+                        id: rows[0].id_user
                     }
-
-                    console.log(req.session)
                     return done(null, rows[0])
                 }
             })

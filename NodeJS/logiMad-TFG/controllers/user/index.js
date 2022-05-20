@@ -27,9 +27,10 @@ const shipment = async (req, res) => {
             req.body['address2'],
             req.body['zip'],
             req.body['city'],
-            req.body['country']
+            req.body['country'],
+            req.body['user_id']
         ]
-        const sql = `INSERT INTO addresses (address1, address2, zip, city, country) VALUES ('${input_values [0]}', '${input_values [1]}', '${input_values [2]}', '${input_values [3]}', '${input_values [4]}');`
+        const sql = `INSERT INTO addresses (address1, address2, zip, city, country, users_id_user) VALUES ('${input_values [0]}', '${input_values [1]}', '${input_values [2]}', '${input_values [3]}', '${input_values [4]}', '${input_values [5]}');`
         console.log(sql);
         conexion.query(sql, (error) => {
             if (error) {
