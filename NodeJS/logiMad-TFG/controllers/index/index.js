@@ -82,6 +82,19 @@ const faq = async (req, res) => {
     }
 }
 
+const about = async (req, res) => {
+    try {
+        const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
+        console.log(req.session)
+        res.render('index/about', {
+            message: message
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 
@@ -89,5 +102,6 @@ module.exports = {
     index: index,
     addMessage: addMessage,
     contact: contact,
-    faq: faq
+    faq: faq,
+    about: about
 }
