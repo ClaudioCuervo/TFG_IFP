@@ -11,7 +11,7 @@ var options = {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'logimad1'
+        database: 'logimad'
       }}
 
 

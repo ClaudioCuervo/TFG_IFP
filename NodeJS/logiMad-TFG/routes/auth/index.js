@@ -5,14 +5,13 @@ const passport = require('passport')
 passportConfig(passport)
 
 router.get ('/login', auth.auth)
-router.get ('/dashboard', auth.dashboard)
 router.get ('/register', auth.registerView)
 router.get ('/logout', auth.logout)
 
 // Auth
 router.post ('/register', 
 passport.authenticate('local-signup', { 
-    successRedirect: `/`,
+    successRedirect: `/auth/login`,
     failureRedirect: `/error`, 
     failWithError: 'true'
 }))

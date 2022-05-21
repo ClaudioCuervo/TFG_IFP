@@ -5,10 +5,20 @@ const conexion = require('../../database/db');
 const ship = async (req, res) => {
     try {
         const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
-
-        res.render('user/ship', {
-            message: message,
-            user: req.session.user
+        let user_id =  req.session.user.id
+        const sql = `SELECT * from addresses WHERE users_id_user = ${user_id} ;`
+        conexion.query(sql, (error, results) => {
+            if (results[0]) {
+                res.redirect('/ship/address')
+            } else {
+                let data = results
+                console.log(results)
+                res.render('user/ship', {
+                    message: message,
+                    user: req.session.user,
+                    data: data
+                })
+            }
         })
 
     } catch (error) {
@@ -32,6 +42,7 @@ const shipment = async (req, res) => {
         ]
         const sql = `INSERT INTO addresses (address1, address2, zip, city, country, users_id_user) VALUES ('${input_values [0]}', '${input_values [1]}', '${input_values [2]}', '${input_values [3]}', '${input_values [4]}', '${input_values [5]}');`
         console.log(sql);
+
         conexion.query(sql, (error) => {
             if (error) {
                 let message = JSON.stringify({
@@ -59,7 +70,6 @@ const address = async (req, res) => {
         const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
         let user_id =  req.session.user.id
         const sql = `SELECT * from addresses WHERE users_id_user = ${user_id} ;`
-        console.log(sql);
         conexion.query(sql, (error, results) => {
             if (error) {
                 console.log(error)

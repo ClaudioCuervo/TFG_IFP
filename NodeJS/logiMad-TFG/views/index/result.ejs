@@ -3,14 +3,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>LogiMad | Iniciar sesión</title>
+    <title>LogiMad | Seguimiento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Excelsure - Courier Service HTML Template" />
-    <meta name="keywords" content="Excelsure">
-    <meta name="MobileOptimized" content="320" />
+    <link rel="icon" type="image/png" href="/public/assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
-    <link rel="icon" type="image/icon" href="/public/assets/images/icons/favicon.png">
     <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/css/menumaker.css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/css/animate.css" />
@@ -18,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="/public/assets/css/line-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/css/flaticon.css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/css/slicknav.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
     <link href="/public/assets/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/public/assets/css/responsive.css" rel="stylesheet">
 </head>
@@ -44,7 +44,7 @@
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
                                     <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
-                                    <li><a href="/auth/register" class="btn btn-primary" title="Acceder">Regístrate</a></li>
+                                    <li><a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a></li>
                                     <% } else { %>
                                     <li class=""><a href="/" title="Inicio">Inicio</a></li>
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
@@ -76,42 +76,94 @@
         <div class="container">
             <div class="section text-center">
                 <br>
-                <h1 class="section-heading">Inicia sesión</h1>
+                <h1 class="section-heading">Comprueba el estado de tú envío</h1>
             </div>
             <div class="quotation-block mt-5">
-                <form class="quotation-form" method="post" action="/auth/signin">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="form-group"><label for="name">Correo electrónico</label>
-                            <input name="email" type="text" class="form-control" id="name" placeholder="Correo electrónico" required=""></div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                <input name="password" type="password" class="form-control" id="password" placeholder="Contraseña" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="request-button">
-                                <button type="submit" class="btn btn-primary">Entrar<i class="las la-arrow-right"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-lg-10">
-                        <b>¿Todavía no te has registrado? <a href="/auth/register">REGÍSTRATE</a></b>
-                    </div>
-                </form>
+                <div class="card card-timeline px-2 border-none">
+                    <ul class="bs4-order-tracking">
+                        <% if (data.id_status  >= 1) { %>
+                        <li class="step active">
+                            <div><i class="fas fa-user"></i></div> En revisión
+                        </li>
+                        <% } %>
+
+                        <% if (data.id_status  >= 2) { %>
+                        <li class="step active">
+                            <div><i class="fas fa-bread-slice"></i></div> En camino
+                        </li>
+                        <% } else { %>
+                        <li class="step">
+                            <div><i class="fas fa-bread-slice"></i></div> 
+                        </li>
+                        <% } %>
+
+                        <% if (data.id_status  >= 3) { %>
+                        <li class="step active">
+                            <div><i class="fas fa-truck"></i></div> En reparto
+                        </li>
+                        <% } else { %>
+                        <li class="step">
+                            <div><i class="fas fa-truck"></i></div>
+                        </li>
+                        <% } %>
+
+                        <% if (data.id_status  >= 4) { %>
+                        <li class="step active">
+                            <div><i class="fas fa-birthday-cake"></i></div> Entregado
+                        </li>
+                        <% } else { %>
+                        <li class="step">
+                            <div><i class="fas fa-birthday-cake"></i></div> 
+                        </li>
+                        <% } %>
+                    </ul>
+                    <% if (data.id_status  == 1) { %>
+                    <h5 class="text-center"><b><%= data.status %></b>. Estamos revisando tú envío</h5>
+                    <% } %>
+                    <% if (data.id_status  == 2) { %>
+                    <h5 class="text-center"><b><%= data.status %></b>. Tú paquete está en camino</h5>
+                    <% } %>
+                    <% if (data.id_status  == 3) { %>
+                    <h5 class="text-center"><b><%= data.status %></b>. Tu paquete está en reparto</h5>
+                    <% } %>
+                    <% if (data.id_status  == 4) { %>
+                    <h5 class="text-center"><b><%= data.status %></b>. ¡Ha llegado!</h5>
+                    <% } %>
+
+                </div>
             </div>
         </div>
     </div>
+    <div id="clients" class="clients-main-block">
+        <div class="container">
+            <div class="row">
+                <div id="clients-slider" class="clients-slider owl-carousel">
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/01.png" class="img-fluid"
+                            alt="clients-1">
+                    </div>
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/02.png" class="img-fluid"
+                            alt="clients-2">
+                    </div>
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/03.png" class="img-fluid"
+                            alt="clients-3">
+                    </div>
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/04.png" class="img-fluid"
+                            alt="clients-4">
+                    </div>
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/05.png" class="img-fluid"
+                            alt="clients-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- clients end-->
     <footer id="footer" class="footer-main-block">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="copyright-block">
-                        <p>&copy; 2022 <a href="/" title="LogiMad">LogiMad</a>. Todos los
-                            derechos <a href="#" title="">reservados</a>.</p>
+                        <p>&copy; 2022 <a href="/" title="LogiMad">LogiMad/a>. Todos los
+                                derechos <a href="#" title="">reservados</a>.</p>
                     </div>
                 </div>
                 <!-- <div class="col-md-6 text-right">
@@ -142,10 +194,10 @@
     <script src="/public/assets/js/menumaker.js"></script>
     <script src="/public/assets/js/waypoints.min.js"></script>
     <script src="/public/assets/js/jquery.counterup.js"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/public/assets/js/jquery.sticky.js"></script>
     <script src="/public/assets/js/jquery.slicknav.min.js"></script>
-    <script src="vendor/mailchimp/jquery.ajaxchimp.js"></script>
     <script src="/public/assets/js/theme.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <% if (message !== null) { %>
