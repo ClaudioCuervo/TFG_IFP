@@ -61,7 +61,8 @@ const contact = async (req, res) => {
         const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
         console.log(req.session)
         res.render('index/contact', {
-            message: message
+            message: message,
+            user: req.session.user
         })
 
     } catch (error) {
@@ -74,7 +75,8 @@ const faq = async (req, res) => {
         const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
         console.log(req.session)
         res.render('index/faq', {
-            message: message
+            message: message,
+            user: req.session.user
         })
 
     } catch (error) {
@@ -87,7 +89,8 @@ const about = async (req, res) => {
         const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
         console.log(req.session)
         res.render('index/about', {
-            message: message
+            message: message,
+            user: req.session.user
         })
 
     } catch (error) {

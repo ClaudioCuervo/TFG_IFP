@@ -7,7 +7,8 @@ const index = async (req, res) => {
         const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
 
         res.render('index/tracking', {
-            message: message
+            message: message,
+            user: req.session.user
         })
 
     } catch (error) {

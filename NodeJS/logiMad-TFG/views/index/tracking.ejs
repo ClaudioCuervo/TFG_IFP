@@ -5,9 +5,7 @@
     <meta charset="utf-8" />
     <title>LogiMad | Seguimiento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Excelsure - Courier Service HTML Template" />
-    <meta name="keywords" content="Excelsure">
-    <meta name="MobileOptimized" content="320" />
+    <link rel="icon" type="image/png" href="/public/assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="icon" type="image/icon" href="/public/assets/images/icons/favicon.png">
@@ -23,7 +21,7 @@
 </head>
 
 <body style="background-color: #00656D;">
-    <div id="nav-bar" class="nav-bar-main-block" style="background-color: #00656D;">
+    <div id="nav-bar" class="nav-bar-main-block absolute">
         <div class="sticky-area">
             <div class="container">
                 <div class="row">
@@ -35,22 +33,35 @@
                         </div>
                         <div class="responsive-menu-wrap"></div>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                         <div class="navigation text-white theme-2">
                             <div id="cssmenu">
                                 <ul>
+                                    <%if (user == undefined) {%>
                                     <li class=""><a href="/" title="Inicio">Inicio</a></li>
-                                    <li class="active"><a href="/track" title="Seguimiento">Seguimiento</a></li>
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
                                     <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                    <li><a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a></li>
+                                    <% } else { %>
+                                    <li class=""><a href="/" title="Inicio">Inicio</a></li>
+                                    <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
+                                    <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
+                                    <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                    <li class="has-sub">
+                                        <span class="submenu-button"></span>
+                                        <span class="submenu-button"></span>
+                                        <a href="#" title="Envíos">Envíos</a>
+                                        <ul>
+                                            <li class="active"><a href="/track" title="Seguimiento">Seguimiento</a></li>
+                                            <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
+                                            sesión</a></li>
+                                    <% } %>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="navigation-btn">
-                            <a href="/auth/login" class="btn btn-primary" title="Iniciar sesión">Acceder</a>
                         </div>
                     </div>
                 </div>
@@ -71,32 +82,39 @@
                         <div class="col-lg-12 col-sm-6">
                             <div class="form-group">
                                 <label for="name">Código de Seguimiento</label>
-                                <input name="trackCode" type="text" class="form-control" id="trackCode" placeholder="Código de Seguimiento">
+                                <input name="trackCode" type="text" class="form-control" id="trackCode"
+                                    placeholder="Código de Seguimiento">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="request-button">
-                                <button type="submit" class="btn btn-primary d-grid">Ver estado<i class="las la-arrow-right"></i></button></div>
+                                <button type="submit" class="btn btn-primary d-grid">Ver estado<i
+                                        class="las la-arrow-right"></i></button></div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-     <!-- clients start-->
-     <div id="clients" class="clients-main-block">
+    <!-- clients start-->
+    <div id="clients" class="clients-main-block">
         <div class="container">
             <div class="row">
                 <div id="clients-slider" class="clients-slider owl-carousel">
-                    <div class="item-clients-img"><img src="/public/assets/images/clients/01.png" class="img-fluid" alt="clients-1">
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/01.png" class="img-fluid"
+                            alt="clients-1">
                     </div>
-                    <div class="item-clients-img"><img src="/public/assets/images/clients/02.png" class="img-fluid" alt="clients-2">
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/02.png" class="img-fluid"
+                            alt="clients-2">
                     </div>
-                    <div class="item-clients-img"><img src="/public/assets/images/clients/03.png" class="img-fluid" alt="clients-3">
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/03.png" class="img-fluid"
+                            alt="clients-3">
                     </div>
-                    <div class="item-clients-img"><img src="/public/assets/images/clients/04.png" class="img-fluid" alt="clients-4">
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/04.png" class="img-fluid"
+                            alt="clients-4">
                     </div>
-                    <div class="item-clients-img"><img src="/public/assets/images/clients/05.png" class="img-fluid" alt="clients-4">
+                    <div class="item-clients-img"><img src="/public/assets/images/clients/05.png" class="img-fluid"
+                            alt="clients-4">
                     </div>
                 </div>
             </div>
@@ -108,7 +126,7 @@
                 <div class="col-md-12 text-center">
                     <div class="copyright-block">
                         <p>&copy; 2022 <a href="/" title="LogiMad">LogiMad/a>. Todos los
-                            derechos <a href="#" title="">reservados</a>.</p>
+                                derechos <a href="#" title="">reservados</a>.</p>
                     </div>
                 </div>
                 <!-- <div class="col-md-6 text-right">

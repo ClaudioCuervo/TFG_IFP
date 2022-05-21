@@ -5,12 +5,9 @@
     <meta charset="utf-8" />
     <title>LogiMad | Envío</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Excelsure - Courier Service HTML Template" />
-    <meta name="keywords" content="Excelsure">
-    <meta name="MobileOptimized" content="320" />
+    <link rel="icon" type="image/png" href="/public/assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
-    <link rel="icon" type="image/icon" href="/public/assets/images/icons/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">¡
     <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/css/menumaker.css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/css/animate.css" />
@@ -23,7 +20,7 @@
 </head>
 
 <body>
-    <div id="nav-bar" class="nav-bar-main-block" style="background-color: #00656D;">
+    <div id="nav-bar" class="nav-bar-main-block absolute">
         <div class="sticky-area">
             <div class="container">
                 <div class="row">
@@ -39,22 +36,29 @@
                         <div class="navigation text-white theme-2">
                             <div id="cssmenu">
                                 <ul>
+                                    <%if (user == undefined) {%>
                                     <li class=""><a href="/" title="Inicio">Inicio</a></li>
-                                    <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
-                                    <li class=""><a href="/about" title="Nosotros">Nosotros</a></li>
-                                    <%if (user !== undefined) {%>
-                                    <li class="active"><a href="/ship" title="Enviar">Enviar</a></li>
+                                    <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                    <li><a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a></li>
+                                    <% } else { %>
+                                    <li class=""><a href="/" title="Inicio">Inicio</a></li>
+                                    <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
+                                    <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
+                                    <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                    <li class="has-sub">
+                                        <span class="submenu-button"></span>
+                                        <span class="submenu-button"></span>
+                                        <a href="#" title="Envíos">Envíos</a>
+                                        <ul>
+                                            <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
+                                            <li class="active"><a href="/ship" title="Enviar">Enviar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
+                                            sesión</a></li>
                                     <% } %>
-                                    <div class="navigation-btn">
-                                        <%if (user == undefined) {%>
-                                        <a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a>
-                                        <% } else { %>
-                                        <a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
-                                            sesión</a>
-                                        <% } %>
-                                    </div>
                                 </ul>
                             </div>
                         </div>
@@ -83,22 +87,27 @@
                                 </div>
                                 <div class="form-list">
                                     <div class="col-lg-3"><label>Dirección 2 (opcional)</label></div>
-                                    <div class="col-lg-9"><input type="text" name="address2" placeholder="Detalla la dirección si es necesario." required></div>
+                                    <div class="col-lg-9"><input type="text" name="address2"
+                                            placeholder="Detalla la dirección si es necesario." required></div>
                                 </div>
                                 <div class="form-list">
                                     <div class="col-lg-3"><label>Código Postal<b style="color:red;">*</b></label></div>
-                                    <div class="col-lg-9"><input name="zip" type="text" placeholder="Código postal" required></div>
+                                    <div class="col-lg-9"><input name="zip" type="text" placeholder="Código postal"
+                                            required></div>
                                 </div>
                                 <div class="form-list">
                                     <div class="col-lg-3"><label>Ciudad<b style="color:red;">*</b></label></div>
-                                    <div class="col-lg-9"><input name="city" type="text" placeholder="Ciudad de destino" required></div>
+                                    <div class="col-lg-9"><input name="city" type="text" placeholder="Ciudad de destino"
+                                            required></div>
                                 </div>
                                 <div class="form-list">
                                     <div class="col-lg-3"><label>País<b style="color:red;">*</b></label></div>
-                                    <div class="col-lg-9"><input name="country" type="text" placeholder="País de destino" required></div>
+                                    <div class="col-lg-9"><input name="country" type="text"
+                                            placeholder="País de destino" required></div>
                                 </div>
                                 <div class="col-lg-12 text-right">
-                                    <div class="col-lg-9"><input name="user_id" type="hidden" value="<%= user.id %>"></div>
+                                    <div class="col-lg-9"><input name="user_id" type="hidden" value="<%= user.id %>">
+                                    </div>
                                     <input type="submit" class="btn-lg btn-rounded" value="Enviar">
                                 </div>
                             </form>

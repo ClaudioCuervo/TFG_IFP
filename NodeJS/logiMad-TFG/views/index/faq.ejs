@@ -6,25 +6,22 @@
     <meta charset="utf-8" />
     <title>LogiMad | FAQs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Excelsure - Courier Service HTML Template" />
-    <meta name="keywords" content="Excelsure">
-    <meta name="author" content="Capricorn_Theme" />
-    <meta name="MobileOptimized" content="320" /><!-- google fonts -->
+    <link rel="icon" type="image/png" href="/public/assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet"><!-- Favicon -->
-    <link rel="icon" type="image/icon" href="/public/assets/images/icons/favicon.png"><!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css" type="text/css" /><!-- Navigation CSS -->
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/menumaker.css" /><!-- Animated CSS -->
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/animate.css" /><!-- Owl Carousel css -->
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/owl.carousel.min.css" /><!-- Line Awesome CSS -->
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/line-awesome.min.css" /><!-- Flaticon CSS -->
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/flaticon.css" /><!-- Slicknav CSS -->
-    <link rel="stylesheet" type="text/css" href="/public/assets/css/slicknav.min.css" /><!-- Main Style CSS -->
-    <link href="/public/assets/css/style.css" rel="stylesheet" type="text/css" /><!-- Responsive CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link rel="icon" type="image/icon" href="/public/assets/images/icons/favicon.png">
+    <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/menumaker.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/flaticon.css" />
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/slicknav.min.css" />
+    <link href="/public/assets/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/public/assets/css/responsive.css" rel="stylesheet">
 </head>
 <body>
-    <div id="nav-bar" class="nav-bar-main-block" style="background-color: #00656D;">
+    <div id="nav-bar" class="nav-bar-main-block absolute">
         <div class="sticky-area">
             <div class="container">
                 <div class="row">
@@ -36,22 +33,35 @@
                         </div>
                         <div class="responsive-menu-wrap"></div>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                         <div class="navigation text-white theme-2">
                             <div id="cssmenu">
                                 <ul>
+                                    <%if (user == undefined) {%>
                                     <li class=""><a href="/" title="Inicio">Inicio</a></li>
-                                    <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
                                     <li class="active"><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
                                     <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                    <li><a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a></li>
+                                    <% } else { %>
+                                    <li class=""><a href="/" title="Inicio">Inicio</a></li>
+                                    <li class="active"><a href="/faq" title="FAQs">FAQS</a></li>
+                                    <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
+                                    <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                    <li class="has-sub">
+                                        <span class="submenu-button"></span>
+                                        <span class="submenu-button"></span>
+                                        <a href="#" title="Envíos">Envíos</a>
+                                        <ul>
+                                            <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
+                                            <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
+                                            sesión</a></li>
+                                    <% } %>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="navigation-btn">
-                            <a href="/auth/login" class="btn btn-primary" title="Iniciar sesión">Acceder</a>
                         </div>
                     </div>
                 </div>
