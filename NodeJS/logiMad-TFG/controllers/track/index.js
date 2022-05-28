@@ -47,6 +47,7 @@ const result = async (req, res) => {
                     user: req.session.user,
                     data: data
                 })
+                console.log(data)
             }
         })
 

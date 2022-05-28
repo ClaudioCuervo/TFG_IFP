@@ -131,25 +131,10 @@ const addAddress = async (req, res) => {
     }
 }
 
-const profile = async (req, res) => {
-    try {
-        const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
-
-        res.render('user/profile', {
-            message: message,
-            user: req.session.user
-        })
-
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 
 module.exports = {
     ship: ship,
     shipment: shipment,
-    profile: profile,
     address: address,
     addAddress: addAddress
 }

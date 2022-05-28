@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/public/assets/css/slicknav.min.css" />
     <link href="/public/assets/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/public/assets/css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -56,8 +57,16 @@
                                             <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
-                                            sesión</a></li>
+                                    <li class="has-sub">
+                                        <span class="submenu-button"></span>
+                                        <span class="submenu-button"></span>
+                                        <a href="#" title="Envíos"><i class="bi bi-person-circle"></i> <%= user.name %></a>
+                                        <ul>
+                                            <li><a href="/profile" class="btn btn-danger" title="Ver perfil">Perfil</a></li>
+                                            <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
+                                                    sesión</a></li>
+                                        </ul>
+                                    </li>
                                     <% } %>
                                 </ul>
                             </div>
@@ -214,7 +223,7 @@
                 </div>
             </div>
         </div>
-    </div><!-- clients end-->
+    </div>
     <footer id="footer" class="footer-main-block">
         <div class="container">
             <div class="row">
@@ -224,27 +233,9 @@
                             derechos <a href="#" title="">reservados</a>.</p>
                     </div>
                 </div>
-                <!-- <div class="col-md-6 text-right">
-                        <div class="copyright-social">
-                            <ul>
-                                <li class="policy"><a href="#" title="Privacy Policy">Privacy Policy </a></li>
-                                <li><a href="#" title="Terms &amp;Conditions"> Terms &amp; Conditions </a></li>
-                                <li>
-                                <li class="dropdown">
-                                    <a href="#" data-toggle="dropdown" title="English"><i
-                                            class="las la-globe"></i>English<i class="las la-caret-square-down"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" title="French">French</a></li>
-                                        <li><a href="#" title="Germany">Germany</a></li>
-                                        <li><a href="#" title="Urdu">Bengali</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div> -->
             </div>
         </div>
     </footer>
-    <a href="#top" class="go-top" style="display:block;"><i class="las la-angle-up"></i></a>
     <script src="/public/assets/js/jquery-2.min.js"></script>
     <script src="/public/assets/js/bootstrap.bundle.js"></script>
     <script src="/public/assets/js/owl.carousel.min.js"></script>
