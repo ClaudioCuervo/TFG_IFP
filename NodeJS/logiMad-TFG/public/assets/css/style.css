@@ -1838,7 +1838,6 @@ select.form-control:not([size]):not([multiple]) {
 .quotation-main-block {
     padding: 70px 0;
     position: relative;
-    height: 770px;
     background-position: 50% 0;
     background-repeat: no-repeat;
     background-size: cover

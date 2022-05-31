@@ -11,6 +11,8 @@ router.get ('/about', index.about)
 
 // Perfil de usuaurio
 router.get ('/profile', profile.index)
+router.get ('/profile/settings', profile.settings)
+router.post ('/update-settings', profile.updateSettings)
 
 
 module.exports.router = router
