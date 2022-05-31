@@ -97,10 +97,20 @@
                                     <div class="col-lg-3"><label>Peso (KG)<b style="color:red;">*</b></label></div>
                                     <div class="col-lg-9"><input name="weight" type="text" placeholder="Ej. 5kg" required></div>
                                 </div>
+                                <div class="form-list">
+                                    <div class="col-lg-3"><label>Dirección<b style="color:red;">*</b></label></div>
+                                    <div class="col-lg-9">
+                                    <select class="form-select" name="selectedValue" aria-label="Default select example">
+                                        <option selected>Selecciona tu dirección</option>
+                                        <% data.forEach(data => { %>
+                                            <option value="<%=data.id_address%>"><%=data.address1%></option>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-lg-12 text-right">
                                     <div class="col-lg-9">
                                     <input name="user_id" type="hidden" value="<%= user.id %>">
-                                    <input name="address_id" type="hidden" value="<%= data.id_address %>">
                                 </div>
                                     <input type="submit" class="btn-lg btn-rounded" value="Enviar">
                                 </div>

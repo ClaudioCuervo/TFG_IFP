@@ -8,8 +8,8 @@ const ship = async (req, res) => {
         let user_id =  req.session.user.id
         const sql = `SELECT * from addresses WHERE users_id_user = ${user_id} ;`
         conexion.query(sql, (error, results) => {
-            if (results[0]) {
-                res.redirect('/ship/address')
+            if (error) {
+                console.log(error)
             } else {
                 let data = results
                 console.log(results)
@@ -70,11 +70,12 @@ const address = async (req, res) => {
         const message = (req.query['message'] !== null && req.query['message'] !== undefined && req.query['message'] !== '') ? JSON.parse(req.query['message']) : null
         let user_id =  req.session.user.id
         const sql = `SELECT * from addresses WHERE users_id_user = ${user_id} ;`
+        console.log(sql)
         conexion.query(sql, (error, results) => {
             if (error) {
                 console.log(error)
             } else {
-                let data = results[0]
+                let data = results
                 console.log(data)
                 res.render('user/address', {
                     message: message,
@@ -94,6 +95,7 @@ const addAddress = async (req, res) => {
         req.headers['Content-Type'] = 'text/html'
         req.headers['charset'] = 'utf-8'
         res.charset = 'utf-8'
+        console.log(req.body)
 
         let input_values = [
             req.body['recipient'],
@@ -101,7 +103,7 @@ const addAddress = async (req, res) => {
             req.body['measures'],
             req.body['weight'],
             req.body['user_id'],
-            req.body['address_id']
+            req.body['selectedValue']
         ]
         const sql = `INSERT INTO shipments (recipient, instructions, measures, weight, users_id_user, addresses_id_address) VALUES ('${input_values [0]}', '${input_values [1]}', '${input_values [2]}', '${input_values [3]}', '${input_values [4]}', '${input_values [5]}');`
         console.log(sql);
