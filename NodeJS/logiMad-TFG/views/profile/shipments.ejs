@@ -198,17 +198,25 @@
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
                                     <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
-                                    <li class="has-sub">
+                                    <li class="active has-sub">
                                         <span class="submenu-button"></span>
                                         <span class="submenu-button"></span>
                                         <a href="#" title="Envíos">Envíos</a>
                                         <ul>
-                                            <li class="active"><a href="/track" title="Seguimiento">Seguimiento</a></li>
-                                            <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
+                                            <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
+                                            <li class=""><a href="/ship/address" title="Enviar">Enviar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
-                                            sesión</a></li>
+                                    <li class="has-sub">
+                                        <span class="submenu-button"></span>
+                                        <span class="submenu-button"></span>
+                                        <a href="#" title="Envíos"><i class="bi bi-person-circle"></i> <%= user.name %></a>
+                                        <ul>
+                                            <li class="active"><a href="/profile" class="btn btn-danger" title="Ver perfil">Perfil</a></li>
+                                            <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
+                                                    sesión</a></li>
+                                        </ul>
+                                    </li>
                                     <% } %>
                                 </ul>
                             </div>
@@ -224,32 +232,21 @@
         <div class="container">
             <section style="background-color: #eee;">
                 <div class="container py-5">
-                  <div class="row">
-                    <div class="col">
-                      <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-                        <ol class="breadcrumb mb-0">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item"><a href="#">User</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                        </ol>
-                      </nav>
-                    </div>
-                  </div>
               
                   <div class="row">
                     <div class="col-lg-4">
-                      <div class="card mb-4">
-                        <div class="card-body text-center">
-                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                            class="rounded-circle img-fluid" style="width: 150px;">
-                          <h5 class="my-3"><%=data[0].name%> <%=data[0].surname%></h5>
-                          <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary">Follow</button>
-                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                        <div class="card mb-4">
+                          <div class="card-body text-center">
+                            <img src="https://icon-library.com/images/profile-png-icon/profile-png-icon-1.jpg" alt="avatar"
+                              class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3"><%=user.name%> <%=user.surname%></h5>
+                            <div class="d-flex justify-content-center mb-2">
+                              <a href="/profile" type="button" class="btn btn-outline-info">Perfil</a>
+                              <a href="/track" type="button" class="btn btn-outline-primary ms-1">Mis envíos</a>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                     <div class="col-lg-8">
                       <div class="card mb-4">
                         <div class="card-body">
@@ -262,6 +259,7 @@
                                     <th scope="col">Ciudad</th>
                                     <th scope="col">Código Postal</th>
                                     <th scope="col">Ver estado</th>
+                                    <th scope="col"><a href="/ship"><i class="bi bi-plus-circle-fill"></i></a></th>
                                 </tr>
                             </thead>
 
@@ -282,8 +280,12 @@
                                     </td>
                                     <td class="d-flex">
                                         <a id="checkRequests" href="/profile/settings?id=<%= data.id_address%>"
-                                            class="btn btn-outline-success" style="display: block;">
-                                            <i class="bi bi-eye-fill"></i>
+                                            class="btn btn-outline-secondary" style="display: block;">
+                                            <i class="bi bi-gear-fill"></i>
+                                        </a>
+                                        <a id="checkRequests" href="../../ship/delete-address?id=<%= data.id_address%>"
+                                            class="btn btn-outline-danger" style="display: block;">
+                                            <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
                                 </tr>

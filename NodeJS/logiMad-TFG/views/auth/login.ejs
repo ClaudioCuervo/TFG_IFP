@@ -44,9 +44,9 @@
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
                                     <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
-                                    <li><a href="/auth/register" class="btn btn-primary" title="Acceder">Regístrate</a></li>
+                                    <li><a href="/auth/register" class="btn btn-primary" title="Acceder">Registrarme</a></li>
                                     <% } else { %>
-                                    <li class=""><a href="/" title="Inicio">Inicio</a></li>
+                                    <li class="active"><a href="/" title="Inicio">Inicio</a></li>
                                     <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
                                     <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
                                     <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
@@ -55,12 +55,20 @@
                                         <span class="submenu-button"></span>
                                         <a href="#" title="Envíos">Envíos</a>
                                         <ul>
-                                            <li class="active"><a href="/track" title="Seguimiento">Seguimiento</a></li>
-                                            <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
+                                            <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
+                                            <li class=""><a href="/ship/address" title="Enviar">Enviar</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
-                                            sesión</a></li>
+                                    <li class="has-sub">
+                                        <span class="submenu-button"></span>
+                                        <span class="submenu-button"></span>
+                                        <a href="#" title="Envíos"><i class="bi bi-person-circle"></i> <%= user.name %></a>
+                                        <ul>
+                                            <li><a href="/profile" class="btn btn-danger" title="Ver perfil">Perfil</a></li>
+                                            <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
+                                                    sesión</a></li>
+                                        </ul>
+                                    </li>
                                     <% } %>
                                 </ul>
                             </div>

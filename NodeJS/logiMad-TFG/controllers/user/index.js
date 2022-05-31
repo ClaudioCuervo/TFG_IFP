@@ -133,10 +133,41 @@ const addAddress = async (req, res) => {
     }
 }
 
+const deleteAddress = async (req, res) => {
+    try {
+        const sql = `DELETE FROM addresses WHERE id_address = ${req.query.id}`
+        console.log(sql);
+        conexion.query(sql, (error) => {
+            if (error) {
+                let message = JSON.stringify({
+                    title: `Error`,
+                    text: 'No puedes eliminar una dirección que contenga un envío.',
+                    type: 'error'
+                })
+                res.redirect(`/?message=${message}`)
+                console.log(error)
+            } else {
+                let message = JSON.stringify({
+                    title: `¡Listo!`,
+                    text: 'Tu dirección ha sido eliminada con éxito.',
+                    type: 'success'
+                })
+                res.redirect(`/?message=${message}`)
+            }
+        })
+
+
+    } catch (error) {
+        console.log(error)
+
+    }
+}
+
 
 module.exports = {
     ship: ship,
     shipment: shipment,
     address: address,
-    addAddress: addAddress
+    addAddress: addAddress,
+    deleteAddress: deleteAddress
 }

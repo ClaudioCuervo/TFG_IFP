@@ -13,8 +13,8 @@ const index = async (req, res) => {
     shipments.addresses_id_address,
     users.name,
     users.surname,
-    (SELECT COUNT(users_id_user = ${req.session.user.id}) FROM shipments ) as userCount,
-    (SELECT COUNT(addresses.users_id_user = ${req.session.user.id}) FROM addresses ) as userAddresses
+    (SELECT COUNT(shipments.users_id_user) FROM shipments WHERE shipments.users_id_user = ${req.session.user.id}) as userCount,
+    (SELECT COUNT(addresses.users_id_user) FROM addresses WHERE addresses.users_id_user = ${req.session.user.id}) as userAddresses
 FROM
     addresses
 INNER JOIN users ON users.id_user = addresses.users_id_user
@@ -23,14 +23,16 @@ WHERE
     users.id_user = ${req.session.user.id};`
         console.log(sql)
         conexion.query(sql, (error, results) => {
+            console.log(results.length)
             if (results[0] == undefined) {
-                let message = JSON.stringify({
-                    title: `¡Error!`,
-                    text: 'No hemos podido completar tú solicitud.',
-                    type: 'error'
+                let data = results
+                res.render('profile/profile', {
+                    message: message,
+                    user: req.session.user,
+                    data: data
                 })
-                res.redirect(`/?message=${message}`)
             } else {
+                console.log(results[0])
                 let data = results[0]
                 res.render('profile/profile', {
                     message: message,
@@ -142,12 +144,12 @@ const shipments = async (req, res) => {
         
         conexion.query(sql, (error, results) => {
             if (results[0] == undefined) {
-                let message = JSON.stringify({
-                    title: `¡Error!`,
-                    text: 'No hemos podido completar tú solicitud.',
-                    type: 'error'
+                let data = results
+                res.render('profile/shipments', {
+                    message: message,
+                    user: req.session.user,
+                    data: data
                 })
-                res.redirect(`/?message=${message}`)
             } else {
                 let data = results
                 res.render('profile/shipments', {

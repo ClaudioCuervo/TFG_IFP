@@ -38,10 +38,10 @@ const index = async (req, res) => {
             if (results[0] == undefined) {
                 let message = JSON.stringify({
                     title: `¡Error!`,
-                    text: 'No hemos podido completar tú solicitud.',
-                    type: 'error'
+                    text: 'No tienes ningún pedido para trackearlo.',
+                    type: 'warning'
                 }) 
-                res.redirect(`/?message=${message}`)
+                res.redirect(`/ship/address?message=${message}`)
             } else {
                 let data = results
                 res.render('index/tracking', {

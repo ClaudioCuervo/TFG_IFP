@@ -54,7 +54,7 @@
                                         <a href="#" title="Envíos">Envíos</a>
                                         <ul>
                                             <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
-                                            <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
+                                            <li class=""><a href="/ship/address" title="Enviar">Enviar</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-sub">
@@ -121,10 +121,10 @@
                 <div class="col-lg-6 mt-4">
                     <div class="question-section">
                         <h6 class="text-center">¡Solicita tu cotización gratis!</h6>
-                        <form action="/post" method="POST">
-                            <input type="text" name="nombre" id="name" required="" placeholder="Nombres completos">
-                            <input type="email" name="correo" id="email" required="" placeholder="Correo electrónico">
-                            <textarea name="descripcion" id="message" cols="30" rows="10" required=""
+                        <form action="/postFull" method="POST">
+                            <input type="text" name="names" id="name" required="" placeholder="Nombres completos">
+                            <input type="email" name="email" id="email" required="" placeholder="Correo electrónico">
+                            <textarea name="message" id="message" cols="30" rows="10" required=""
                                 placeholder="¿Cómo te podemos ayudar?"></textarea>
                             <button class="btn btn-primary d-grid btn-rounded" type="submit"
                                 name="submit">Enviar</button>

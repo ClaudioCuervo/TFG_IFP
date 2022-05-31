@@ -38,31 +38,39 @@
                     <div class="col-lg-9">
                         <div class="navigation text-white theme-2">
                             <div id="cssmenu">
-                                <ul>
-                                    <%if (user == undefined) {%>
-                                    <li class=""><a href="/" title="Inicio">Inicio</a></li>
-                                    <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
-                                    <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
-                                    <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
-                                    <li><a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a></li>
-                                    <% } else { %>
-                                    <li class=""><a href="/" title="Inicio">Inicio</a></li>
-                                    <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
-                                    <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
-                                    <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
-                                    <li class="has-sub">
-                                        <span class="submenu-button"></span>
-                                        <span class="submenu-button"></span>
-                                        <a href="#" title="Envíos">Envíos</a>
-                                        <ul>
-                                            <li class="active"><a href="/track" title="Seguimiento">Seguimiento</a></li>
-                                            <li class=""><a href="/ship" title="Enviar">Enviar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
-                                            sesión</a></li>
-                                    <% } %>
-                                </ul>
+                              <ul>
+                                <%if (user == undefined) {%>
+                                <li class=""><a href="/" title="Inicio">Inicio</a></li>
+                                <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
+                                <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
+                                <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                <li><a href="/auth/login" class="btn btn-primary" title="Acceder">Acceder</a></li>
+                                <% } else { %>
+                                <li class=""><a href="/" title="Inicio">Inicio</a></li>
+                                <li class=""><a href="/faq" title="FAQs">FAQS</a></li>
+                                <li class=""><a href="/contact" title="Contacto">Contacto</a></li>
+                                <li class=""><a href="/about" title="Sobre Nosotros">Nosotros</a></li>
+                                <li class="has-sub">
+                                    <span class="submenu-button"></span>
+                                    <span class="submenu-button"></span>
+                                    <a href="#" title="Envíos">Envíos</a>
+                                    <ul>
+                                        <li class=""><a href="/track" title="Seguimiento">Seguimiento</a></li>
+                                        <li class=""><a href="/ship/address" title="Enviar">Enviar</a></li>
+                                    </ul>
+                                </li>
+                                <li class=" has-sub">
+                                    <span class="submenu-button"></span>
+                                    <span class="submenu-button"></span>
+                                    <a href="#" title="Envíos"><i class="bi bi-person-circle"></i> <%= user.name %></a>
+                                    <ul>
+                                        <li class="active"><a href="/profile" class="btn btn-danger" title="Ver perfil">Perfil</a></li>
+                                        <li><a href="/auth/logout" class="btn btn-danger" title="Salir de la sesión">Cerrar
+                                                sesión</a></li>
+                                    </ul>
+                                </li>
+                                <% } %>
+                            </ul>
                             </div>
                         </div>
                     </div>
@@ -76,28 +84,17 @@
         <div class="container">
             <section style="background-color: #eee;">
                 <div class="container py-5">
-                  <div class="row">
-                    <div class="col">
-                      <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-                        <ol class="breadcrumb mb-0">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item"><a href="#">User</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                        </ol>
-                      </nav>
-                    </div>
-                  </div>
               
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="card mb-4">
                         <div class="card-body text-center">
-                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                          <img src="https://icon-library.com/images/profile-png-icon/profile-png-icon-1.jpg" alt="avatar"
                             class="rounded-circle img-fluid" style="width: 150px;">
-                          <h5 class="my-3"><%=data.name%> <%=data.surname%></h5>
+                          <h5 class="my-3"><%=user.name%> <%=user.surname%></h5>
                           <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary">Follow</button>
-                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                            <a href="/profile/my-addresses" type="button" class="btn btn-outline-info">Mis direcciones</a>
+                            <a href="/track" type="button" class="btn btn-outline-primary ms-1">Mis envíos</a>
                           </div>
                         </div>
                       </div>
@@ -107,16 +104,16 @@
                         <div class="card-body">
                           <div class="row">
                             <div class="col-sm-3">
-                              <p class="mb-0">Full Name</p>
+                              <p class="mb-0">Nombres completos</p>
                             </div>
                             <div class="col-sm-9">
-                              <p class="text-muted mb-0"><%=data.name%> <%=data.surname%></p>
+                              <p class="text-muted mb-0"><%=user.name%> <%=user.surname%></p>
                             </div>
                           </div>
                           <hr>
                           <div class="row">
                             <div class="col-sm-3">
-                              <p class="mb-0">Email</p>
+                              <p class="mb-0">Correo</p>
                             </div>
                             <div class="col-sm-9">
                               <p class="text-muted mb-0"><%=user.mail%></p>
@@ -125,7 +122,7 @@
                           <hr>
                           <div class="row">
                             <div class="col-sm-3">
-                              <p class="mb-0">Phone</p>
+                              <p class="mb-0">Móvil</p>
                             </div>
                             <div class="col-sm-9">
                               <p class="text-muted mb-0"><%=user.phone%></p>
@@ -137,7 +134,11 @@
                               <p class="mb-0">Envíos</p>
                             </div>
                             <div class="col-sm-9">
+                              <% if (data.userCount !== undefined) { %>
                               <p class="text-muted mb-0"><%=data.userCount%></p>
+                              <% } else { %>
+                              <p class="text-muted mb-0" style="color: red;">No tienes envíos</p>
+                              <% } %>
                             </div>
                           </div>
                           <hr>
@@ -146,7 +147,11 @@
                               <p class="mb-0">Direcciones</p>
                             </div>
                             <div class="col-sm-9">
-                              <p class="text-muted mb-0"><%=data.userAddresses%></p>
+                              <% if (data.userAddresses !== undefined) { %>
+                                <p class="text-muted mb-0"><%=data.userAddresses%></p>
+                                <% } else { %>
+                                <p class="text-muted mb-0" style="color: red;">No tienes direcciones</p>
+                                <% } %>
                             </div>
                           </div>
                         </div>
@@ -155,18 +160,22 @@
                   </div>
         </div>
     </div>
-    <footer id="footer" class="footer-main-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="copyright-block">
-                        <p>&copy; 2022 <a href="/" title="LogiMad">LogiMad</a>. Todos los
-                            derechos <a href="#" title="">reservados</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <div class="footer">
+
+
+      <footer id="footer" class="footer-main-block" style="display: flex;flex-direction: column;position: relative;top: 196px;">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12 text-center">
+                      <div class="copyright-block">
+                          <p>© 2022 <a href="/" title="LogiMad">LogiMad</a>. Todos los
+                              derechos <a href="#" title="">reservados</a>.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </footer>
+  </div>
     <script src="/public/assets/js/jquery-2.min.js"></script>
     <script src="/public/assets/js/bootstrap.bundle.js"></script>
     <script src="/public/assets/js/owl.carousel.min.js"></script>

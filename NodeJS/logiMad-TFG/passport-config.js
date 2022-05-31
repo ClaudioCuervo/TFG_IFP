@@ -83,7 +83,8 @@ module.exports = function (passport) {
                         name: rows[0].name,
                         mail: rows[0].mail,
                         phone: rows[0].phone,
-                        id: rows[0].id_user
+                        id: rows[0].id_user,
+                        surname: rows[0].surname
                     }
                     return done(null, rows[0])
                 }

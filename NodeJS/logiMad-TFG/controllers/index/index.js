@@ -22,13 +22,11 @@ const addMessage = async (req, res) => {
         req.headers['charset'] = 'utf-8'
         res.charset = 'utf-8'
         let input_values = [
-            req.body['nombre2'],
-            req.body['correo2'],
-            req.body['movil2'],
-            req.body['ciudadOrigen2'],
-            req.body['ciudadDestino2']
+            req.body['names'],
+            req.body['email'],
+            req.body['message']
         ]
-        const sql = `INSERT INTO messages (nombre, correo, movil, ciudadOrigen, ciudadDestino) VALUES ('${input_values [0]}', '${input_values [1]}', '${input_values [2]}', '${input_values [3]}', '${input_values [4]}');`
+        const sql = `INSERT INTO messages (names, email, message) VALUES ('${input_values [0]}', '${input_values [1]}', '${input_values [2]}');`
         console.log(sql);
         conexion.query(sql, (error) => {
             if (error) {
@@ -42,7 +40,7 @@ const addMessage = async (req, res) => {
             } else {
                 let message = JSON.stringify({
                     title: `¡Gracias!`,
-                    text: 'Hemos recibido tus datos, pronto nos pondremos en contacto contigo.',
+                    text: 'Hemos recibido tu mensaje, pronto nos pondremos en contacto contigo.',
                     type: 'success'
                 }) 
                 res.redirect(`/?message=${message}`)
